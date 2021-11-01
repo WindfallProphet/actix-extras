@@ -227,6 +227,7 @@ struct Inner {
     max_age: Option<Duration>,
     same_site: Option<SameSite>,
     http_only: bool,
+    lazy: bool,
 }
 
 impl Inner {
@@ -305,6 +306,7 @@ impl Inner {
             cookie.set_path(self.path.clone());
             cookie.set_secure(self.secure);
             cookie.set_http_only(self.http_only);
+            cookie.set_lazy(self.lazy);
 
             if let Some(ref domain) = self.domain {
                 cookie.set_domain(domain.clone());
