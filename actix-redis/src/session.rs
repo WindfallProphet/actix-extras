@@ -43,6 +43,7 @@ impl RedisSession {
             max_age: Some(Duration::days(7)),
             same_site: None,
             http_only: true,
+            lazy: false,
         }))
     }
 
@@ -102,6 +103,14 @@ impl RedisSession {
     /// Default is true.
     pub fn cookie_http_only(mut self, http_only: bool) -> Self {
         Rc::get_mut(&mut self.0).unwrap().http_only = http_only;
+        self
+    }
+    
+    /// Set custom cookie `HttpOnly` policy.
+    ///
+    /// Default is true.
+    pub fn cookie_lazy(mut self, cookie_lazy: bool) -> Self {
+        Rc::get_mut(&mut self.0).unwrap().lazy = lazy;
         self
     }
 
